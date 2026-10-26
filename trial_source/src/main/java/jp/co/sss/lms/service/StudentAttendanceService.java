@@ -1,6 +1,7 @@
 package jp.co.sss.lms.service;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -332,6 +333,32 @@ public class StudentAttendanceService {
 		}
 		// 完了メッセージ
 		return messageUtil.getMessage(Constants.PROP_KEY_ATTENDANCE_UPDATE_NOTICE);
+	}
+	
+	/**
+	 * 過去日の未入力チェック
+	 * 今日より前の過去日に、未入力の勤怠があるかどうかを判定する。
+	 * 
+	 * @return 未入力日数が0より大きい場合はtrue、そうでない場合はfalse
+	 * @throws ParseException
+	 */
+	public Boolean notEnterCheck() throws ParseException{
+		// a. SimpleDateFormatクラスでフォーマットパターンを設定する
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		
+		// b. 現在日付を取得し、フォーマット変換
+		Date today = new Date();
+		String currentDate = sdf.format(today);
+				
+		// tStudentAttendanceMapper.notEnterCount を呼び出し、未入力件数を取得する
+		int notEnterCount = tStudentAttendanceMapper.notEnterCount(loginUserDto.getLmsUserId(), 
+				Constants.DB_FLG_FALSE, currentDate);
+		
+		// 件数が 0 より大きければ true、そうでない場合は false を返す
+		if(notEnterCount > 0) {
+			return true;
+		}
+		return false;
 	}
 
 }

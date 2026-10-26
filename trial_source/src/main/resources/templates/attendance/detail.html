@@ -87,6 +87,16 @@
 			return hours + ':' + minutes;
 		}
 	</script>
+	
+	<!-- Take25 過去日の未入力チェックがtureの場合、メッセージ・ダイアログを表示 -->
+	<script>
+	window.onload = function() {
+		var hasNotEnter = '${hasNotEnter}';
+		if (hasNotEnter === 'true') {
+		    alert("過去日に未入力の勤怠があります。");
+		}
+	};
+	</script>
 
 </body>
 </html>
