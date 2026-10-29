@@ -42,7 +42,7 @@ public class AttendanceController {
 	@RequestMapping(path = "/detail", method = RequestMethod.GET)
 	public String index(Model model) throws ParseException{
 		
-		// Take25 過去日の未入力チェック
+		// Task25 過去日の未入力チェック
 		Boolean hasNotEnter = studentAttendanceService.notEnterCheck();
 		model.addAttribute("hasNotEnter", hasNotEnter);
 				

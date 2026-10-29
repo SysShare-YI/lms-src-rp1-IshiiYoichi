@@ -336,7 +336,7 @@ public class StudentAttendanceService {
 	}
 	
 	/**
-	 * 過去日の未入力チェック
+	 * Task25 過去日の未入力チェック
 	 * 今日より前の過去日に、未入力の勤怠があるかどうかを判定する。
 	 * 
 	 * @return 未入力日数が0より大きい場合はtrue、そうでない場合はfalse
